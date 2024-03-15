@@ -6,22 +6,48 @@
 </div>
 
 
-<div class="courses">
+<div class="courses" #containerRef>
+    <!-- @for (course of courses; track course.id;  -->
+    <!-- @for (course of courses; track trackCourse;  -->
+    @for (course of courses; track index; 
+    let index = $index; let count = $count;
+    let first = $first;
+    let last = $last;
+    let even = $even;
+    let odd = $odd
+    ) {
+        <!-- <course-card #cardRef
+        [course] = "courses[1]"
+        (courseSelected) = "onCourseSelected($event)">
+    </course-card>
+        <course-card #cardRef2
+        [course] = "courses[2]"
+        (courseSelected) = "onCourseSelected($event)">
+    </course-card> -->
+        <course-card 
+        [course] = "course"
+        (courseSelected) = "onCourseSelected($event)">
 
-    <div class="course-card">
+        <course-image [src] = "course?.iconUrl"></course-image>
 
-        <div class="course-title">
-            Angular Core Deep Dive
-        </div>
-        <img width="300" alt="Angular Logo"
-             src="https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png">
+        <!-- <div #imgcontent class="course-img">
+            <img width="300" alt="Angular Logo"
+            [src]="course?.iconUrl">
+    
+            <h4> Total Courses: 6 </h4>
+        </div> -->
 
         <div class="course-description">
-            A detailed walk-through of the most important part of Angular - the Core and Common modules.
+            {{ course?.longDescription }}
         </div>
 
-    </div>
+        Edit Course: <textarea></textarea>
+    
 
+    </course-card>
+    } @empty {
+        <h1> No courses found! </h1>
+    } 
 </div>
 
 
